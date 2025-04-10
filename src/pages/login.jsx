@@ -1,38 +1,50 @@
-// ofkV4HNpVaklktAp
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { useState } from "react"
-import { toast } from "react-toastify"
-import { useNavigate } from "react-router-dom"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const [signupInput, setSignupInput] = useState({ name: '', email: '', password: '' })
-    const [loginInput, setLoginInput] = useState({ email: '', password: '' })
-    const navigate = useNavigate()
+    const [signupInput, setSignupInput] = useState({ name: '', email: '', password: '' });
+    const [loginInput, setLoginInput] = useState({ email: '', password: '' });
+    const navigate = useNavigate();
 
     const changeInputHandler = (e, type) => {
-        const { name, value } = e.target
+        const { name, value } = e.target;
         if (type === "Signup") {
-            setSignupInput({ ...signupInput, [name]: value })
+            setSignupInput({ ...signupInput, [name]: value });
         } else {
-            setLoginInput({ ...loginInput, [name]: value })
+            setLoginInput({ ...loginInput, [name]: value });
         }
-    }
+    };
 
     const handleRegistration = (type) => {
-        const inputData = type === "signup" ? signupInput : loginInput
-        console.log(inputData)
         if (type === "login") {
-        toast.success("Login successful")
-        setLoginInput({ email: '', password: '' })
-        navigate("/home")
+            // Validate login fields
+            if (!loginInput.email || !loginInput.password) {
+                toast.error("Please fill in all login details.");
+                return;
+            }
+            // Simulate successful login
+            toast.success("Login successful!");
+            setLoginInput({ email: '', password: '' });
+            navigate("/home");
         } else {
-        toast.success("Signup successful")
-        setSignupInput({ name: '', email: '', password: '' })
-    }};
+            // Validate signup fields
+            if (!signupInput.name || !signupInput.email || !signupInput.password) {
+                toast.error("Please fill in all signup details.");
+                return;
+            }
+            // Simulate successful signup
+            toast.success("Signup successful!");
+            setSignupInput({ name: '', email: '', password: '' });
+            navigate("/home");
+        }
+    };
+
     return (
         <div className="flex items-center justify-center w-full">
             <Tabs defaultValue="Signup" className="w-[400px]">
@@ -51,25 +63,42 @@ const Login = () => {
                         <CardContent className="space-y-2">
                             <div className="space-y-1">
                                 <Label htmlFor="name">Name</Label>
-                                <Input type="text" name="name" value={signupInput.name}
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    value={signupInput.name}
                                     onChange={(e) => changeInputHandler(e, "Signup")}
-                                    placeholder="Enter Your Name" required />
+                                    placeholder="Enter Your Name"
+                                    required
+                                />
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="email">Email</Label>
-                                <Input type="email" name="email" value={signupInput.email}
+                                <Input
+                                    type="email"
+                                    name="email"
+                                    value={signupInput.email}
                                     onChange={(e) => changeInputHandler(e, "Signup")}
-                                    placeholder="Enter Your Email" required />
+                                    placeholder="Enter Your Email"
+                                    required
+                                />
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="password">Password</Label>
-                                <Input type="password" name="password" value={signupInput.password}
+                                <Input
+                                    type="password"
+                                    name="password"
+                                    value={signupInput.password}
                                     onChange={(e) => changeInputHandler(e, "Signup")}
-                                    placeholder="Enter Your Password" required />
+                                    placeholder="Enter Your Password"
+                                    required
+                                />
                             </div>
                         </CardContent>
                         <CardFooter>
-                            <Button onClick={() => handleRegistration("signup")}>Signup</Button>
+                            <Button className="w-full" onClick={() => handleRegistration("signup")}>
+                                Signup
+                            </Button>
                         </CardFooter>
                     </Card>
                 </TabsContent>
@@ -84,28 +113,37 @@ const Login = () => {
                         <CardContent className="space-y-2">
                             <div className="space-y-1">
                                 <Label htmlFor="email">Email</Label>
-                                <Input type="email" name="email" value={loginInput.email}
+                                <Input
+                                    type="email"
+                                    name="email"
+                                    value={loginInput.email}
                                     onChange={(e) => changeInputHandler(e, "Login")}
-                                    placeholder="Enter Your Email" required />
+                                    placeholder="Enter Your Email"
+                                    required
+                                />
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="password">Password</Label>
-                                <Input type="password"
+                                <Input
+                                    type="password"
                                     name="password"
                                     value={loginInput.password}
                                     onChange={(e) => changeInputHandler(e, "Login")}
                                     placeholder="Enter Your Password"
-                                    required />
+                                    required
+                                />
                             </div>
                         </CardContent>
                         <CardFooter>
-                            <Button onClick={() => handleRegistration("login")}>login</Button>
+                            <Button className="w-full" onClick={() => handleRegistration("login")}>
+                                Login
+                            </Button>
                         </CardFooter>
                     </Card>
                 </TabsContent>
             </Tabs>
         </div>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;
