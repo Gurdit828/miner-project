@@ -2,10 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
     const [signupInput, setSignupInput] = useState({ name: '', email: '', password: '' });
@@ -23,22 +23,22 @@ const Login = () => {
 
     const handleRegistration = (type) => {
         if (type === "login") {
-            // Validate login fields
+
             if (!loginInput.email || !loginInput.password) {
                 toast.error("Please fill in all login details.");
                 return;
             }
-            // Simulate successful login
+
             toast.success("Login successful!");
             setLoginInput({ email: '', password: '' });
             navigate("/home");
         } else {
-            // Validate signup fields
+
             if (!signupInput.name || !signupInput.email || !signupInput.password) {
                 toast.error("Please fill in all signup details.");
                 return;
             }
-            // Simulate successful signup
+
             toast.success("Signup successful!");
             setSignupInput({ name: '', email: '', password: '' });
             navigate("/home");
@@ -46,7 +46,7 @@ const Login = () => {
     };
 
     return (
-        <div className="flex items-center justify-center w-full">
+        <div className="flex items-center justify-center w-full ">
             <Tabs defaultValue="Signup" className="w-[400px]">
                 <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="Signup">Signup</TabsTrigger>
@@ -90,7 +90,7 @@ const Login = () => {
                                     name="password"
                                     value={signupInput.password}
                                     onChange={(e) => changeInputHandler(e, "Signup")}
-                                    placeholder="Enter Your Password"
+                                    placeholder="Enter Your Password" 
                                     required
                                 />
                             </div>

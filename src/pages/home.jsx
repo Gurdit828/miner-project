@@ -11,7 +11,7 @@ const navigation = [
 ];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(' ')
 }
 
 const Home = () => {
@@ -40,8 +40,8 @@ const Home = () => {
                 <img
                   alt="Your Company"
                   src="LMS.jpeg"
-                  className="h-8 w-auto cursor-pointer" // Add cursor pointer for clickability
-                  onClick={toggleTheme} // Toggle theme on logo click
+                  className="h-8 w-auto cursor-pointer" 
+                  onClick={toggleTheme} 
                 />
               </div>
               <div className="hidden sm:ml-6 sm:block">
@@ -99,7 +99,8 @@ const Home = () => {
                   </MenuItem>
                   <MenuItem>
                     <a
-                      href="#"
+                      href="./Hender"
+                      onClick={toggleTheme}
                       className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
                     >
                       Settings
@@ -140,6 +141,5 @@ const Home = () => {
       </Disclosure>
     </div>
   );
-};
-
-export default Home;
+}
+export default Home
